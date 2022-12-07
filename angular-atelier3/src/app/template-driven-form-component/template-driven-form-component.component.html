@@ -1,0 +1,37 @@
+
+<h1  style ="color:#008CBA; text-align:center;">{{titre}}</h1>
+<fieldset class="form-group">
+    <legend> <i>Informations générales</i></legend>
+    <form #form="ngForm">
+        <label>Nom </label>
+        <input #name="ngModel" [(ngModel)]="user.nom" required name="nom" class="form-control" type="text">
+        <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
+            <p *ngIf="name.errors?.['required']" style ="color:red">Le nom est obligatoire</p>
+        </div>
+        <br>
+        <label>Email </label>
+        <input #email="ngModel" [(ngModel)]="user.email" pattern="[a-zA-Z.]+[a-zA-Z]+@[a-zA-Z]+\.[a-zA-Z]{2,3}" required name="email" class="form-control" type="email">
+        <div class="alert alert-danger" *ngIf="email.touched && email.invalid">
+            <p *ngIf="email.errors?.['required']" style ="color:red">L'email est obligatoire</p>
+            <p *ngIf="email.errors?.['pattern']" style ="color:red">Email incorrect</p>
+        </div>
+        <fieldset class="form-group">
+            <legend><i>Informations de payement </i></legend>
+            <label>Type de carte </label>
+            <input #typeCarte="ngModel" [(ngModel)]="user.typeCarte" required name="typeCarte" class="form-control" type="text">
+            <br>
+
+            <label>Numero de carte </label>
+            <input #numeroCarte="ngModel" [(ngModel)]="user.numeroCarte" minlength="16" maxlength="16" required name="numeroCarte" class="form-control" type="text">
+
+            <br>
+            <label>Date d'expiration </label>
+            <input #dateExpiration="ngModel" [(ngModel)]="user.dateExpiration" required name="dateExpiration" type="date"  class="form-control" type="text">
+            <br>
+            <label [hidden]="typeCarte.invalid || dateExpiration.invalid || numeroCarte.invalid">Code</label>
+            <input #code="ngModel" [hidden]="typeCarte.invalid || dateExpiration.invalid || numeroCarte.invalid" [(ngModel)]="user.code" class="form-control" name="code" type="text">
+        </fieldset>
+        <br>
+        <button [disabled]="form.invalid"   style ="color:#008CBA;">Ajouter</button>
+    </form>
+</fieldset>
