@@ -1,0 +1,26 @@
+<h1>estimation-cout works!</h1>
+<form>
+  <div class="form-group">
+    <label>Position</label>
+    <select name="position" [(ngModel)]="inputPosition" required #p="ngModel">
+      <option value="">Message</option>
+      <option value="haut">haut</option>
+      <option value="bas">bas</option>
+    </select>
+    <p *ngIf="p.invalid && p.touched">
+      Position est obligatoire
+    </p>
+  </div>
+  <div class="form-group">
+    <label>Nombre</label>
+    <input type="number" name="nbrC" [(ngModel)]="inputNbrC" required #n="ngModel" >
+    <p *ngIf="n.invalid && n.touched">
+      NbrC est obligatoire
+    </p>
+    <p *ngIf="n.value>60">
+      Message Value
+    </p>
+  </div>
+  <button (click)="estimation()">estimer</button>
+</form>
+<p [hidden]="cout == 0">Valeur: {{cout}}</p>

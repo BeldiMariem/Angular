@@ -1,0 +1,7 @@
+<div  *ngFor="let a of listChild; let i = index">
+  <table class="table" border="2" *ngIf="i<nbrAnnonceChild">
+    <tr><td>Titre:</td><td>{{a.titre}}</td></tr>
+    <tr><td>Description:</td><td>{{a.description}}</td></tr>
+  </table>
+</div>
+
